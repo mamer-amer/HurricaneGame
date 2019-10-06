@@ -1,0 +1,87 @@
+html,
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+body {
+  background: url(https://i.pinimg.com/originals/3e/86/0d/3e860d2e061e24f4309a98a3bc16028a.jpg) no-repeat center;
+  background-size: cover;
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+body:active .duck:active {
+  box-shadow:red 0px 0px 0px 3000px;
+}
+
+h2 {
+  position:absolute;
+  font-family:sans-serif;
+  top:0px;
+  text-align:center;
+  left:0px;
+  right:0px;
+  padding:5%;
+}
+
+.duck {
+  position: absolute;
+  left:-150px;
+  right:0px;
+  height:0px;
+  border-radius: 100%;
+  z-index:10;
+  transform: translateZ(0);
+  
+  a {
+    display: block;
+    cursor: crosshair;
+    transition: all 0.6s;
+    background: no-repeat center url(https://library.kissclipart.com/20180929/zaq/kissclipart-hurricane-png-clipart-2012-atlantic-hurricane-seas-c073272b966f6243.png);
+    background-size: cover;
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  .duck:nth-child(#{$i}) {    
+    top: percentage(random(60)/100); 
+    animation: fly random(10)+6s random(200)/10+s linear infinite;
+    a { 
+      width: random(100) + 50 +px;
+      animation: float random(20)/10+1.5+s infinite cubic-bezier(.58,.14,.46,.92);
+    }
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(40%);
+  }
+  50% {
+    transform: translateY(-40%);
+  }
+  100% {
+    transform: translateY(40%);
+  }
+}
+
+.duck:target {
+  animation: none;
+}
